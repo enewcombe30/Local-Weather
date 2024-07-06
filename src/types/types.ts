@@ -1,25 +1,26 @@
-interface Weather {
+export type Weather = {
   location: UserLocation;
   current: CurrentWeather;
-}
+};
 
-type UserLocation = {
+export type UserLocation = {
   name: string;
   region: string;
   country: string;
   localtime: string;
 };
 
-type CurrentWeather = {
+export type CurrentWeather = {
   tempC: number;
   condition: Condition;
   windMph: number;
   windDir: string;
   feelsLikeC: string;
   windGustMph: string;
+  lastUpdated: string;
 };
 
-type Condition = {
+export type Condition = {
   text: string;
   icon: string;
 };
