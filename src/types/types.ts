@@ -11,13 +11,13 @@ export type UserLocation = {
 };
 
 export type CurrentWeather = {
-  tempC: number;
+  temp_c: number;
   condition: Condition;
-  windMph: number;
-  windDir: string;
-  feelsLikeC: string;
-  windGustMph: string;
-  lastUpdated: string;
+  wind_mph: number;
+  wind_dir: string;
+  feelslike_c: number;
+  gust_mph: number;
+  last_updated: string;
 };
 
 export type Condition = {

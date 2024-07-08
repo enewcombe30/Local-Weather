@@ -8,12 +8,12 @@ export const defaultWeather: Weather = {
     localtime: "",
   },
   current: {
-    tempC: 0,
+    temp_c: 0,
     condition: { text: "", icon: "" },
-    windMph: 0,
-    windDir: "",
-    feelsLikeC: "",
-    windGustMph: "",
-    lastUpdated: "",
+    wind_mph: 0,
+    wind_dir: "",
+    feelslike_c: 0,
+    gust_mph: 0,
+    last_updated: "",
   },
 };

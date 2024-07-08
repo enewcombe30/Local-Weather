@@ -2,55 +2,61 @@ import useWeather from "./hooks/useWeather";
 
 function App() {
   const { currentWeather } = useWeather();
-  const tempInC = currentWeather.current.tempC;
-  console.log("current", currentWeather);
+  console.log(currentWeather);
+  console.log("current", currentWeather.current);
   return (
     <div className="w-screen h-screen bg-slate-200">
-      <div className="w-fit mx-auto py-[4rem]">Local Weather App</div>
-      <div className="flex">
-        <div className="ml-[8rem] w-fit">
-          <div className="w-[24rem] flex">
-            <div className="w-[5rem]">Location </div>
-            <div className="w-[19rem]">{`: ${currentWeather.location.name}`}</div>
-          </div>
-          <div className="w-[24rem] flex">
-            <div className="w-[5rem]">Area</div>
-            <div className="w-[19rem]">{`: ${currentWeather.location.region}`}</div>
-          </div>
-          <div className="w-[24rem] flex">
-            <div className="w-[5rem]">Country</div>
-            <div className="w-[19rem]">{`: ${currentWeather.location.country}`}</div>
-          </div>
-          <div className="w-[24rem] flex">
-            <div className="w-[5rem]">Local time </div>
-            <div className="w-[19rem]">{`: ${currentWeather.location.localtime}`}</div>
-          </div>
+      <div className="w-fit mx-auto pb-[6rem] pt-[4rem] text-4xl">
+        Local Weather App
+      </div>
+      <div className="w-fit mx-auto">
+        <div className="w-fit mx-auto">
+          <div className="w-fit text-4xl pt-2 pb-0.5">{`${currentWeather.location.name}`}</div>
+          <div className="w-fit mx-auto text-slate-400">{`${currentWeather.location.region}`}</div>
         </div>
-        <div className="ml-[8rem] w-fit">
-          <div className="w-[24rem] flex">
-            <div className="w-[6rem]">Condition </div>
-            <div className="w-[18rem]">{`: ${currentWeather.current.condition.text}`}</div>
-          </div>
+        <div className="w-fit mx-auto">
+          <div className="w-fit text-slate-400">{`${currentWeather.location.country}`}</div>
+        </div>
+        <div className="w-fit flex mx-auto text-xs text-slate-400">
+          <div className="w-fit">Local time</div>
+          <div className="w-fit">{`: ${currentWeather.location.localtime}`}</div>
+        </div>
+      </div>
+      <div className="w-fit mx-auto my-[2rem]">
+        <img
+          className="w-[10rem] h-[10rem] bg-blue-300 rounded-full m-auto"
+          src={`${currentWeather.current.condition.icon}`}
+        ></img>
+      </div>
+      <div className="w-fit mx-auto">
+        <div className="w-fit mx-auto flex text-3xl">
+          {`${currentWeather.current.condition.text}`}
+        </div>
+        <div className="mx- w-fit">
           <div className="w-[24rem] flex">
             <div className="w-[6rem]">Temp C</div>
-            <div className="w-[18rem]">{`: ${tempInC}`}</div>
+            <div className="w-[18rem]">
+              {`: ${currentWeather.current.temp_c} `}&deg;{"C"}
+            </div>
           </div>
           <div className="w-[24rem] flex">
             <div className="w-[6rem]">Feels Like</div>
-            <div className="w-[18rem]">{`: ${currentWeather.current.feelsLikeC}`}</div>
+            <div className="w-[18rem]">
+              {`: ${currentWeather.current.feelslike_c} `}&deg;{"C"}
+            </div>
           </div>
           <div className="w-[24rem] flex">
             <div className="w-[6rem]">Wind Dir </div>
-            <div className="w-[18rem]">{`: ${currentWeather.current.windDir}`}</div>
+            <div className="w-[18rem]">{`: ${currentWeather.current.wind_dir}`}</div>
           </div>
           <div className="w-[24rem] flex">
             <div className="w-[6rem]">Wind Speed</div>
-            <div className="w-[18rem]">{`: ${currentWeather.current.windMph}`}</div>
+            <div className="w-[18rem]">{`: ${currentWeather.current.wind_mph} mph`}</div>
           </div>
-          <div className="w-[24rem] flex text-xs">
-            <div className="w-[6rem]">Last Updated</div>
-            <div className="w-[18rem]">{`: ${currentWeather.current.lastUpdated}`}</div>
-          </div>
+        </div>
+        <div className="w-fit flex text-xs">
+          <div className="w-[6rem]">Last Updated</div>
+          <div className="w-[18rem]">{`: ${currentWeather.current.last_updated}`}</div>
         </div>
       </div>
 
