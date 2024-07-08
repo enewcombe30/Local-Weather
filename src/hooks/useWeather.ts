@@ -11,7 +11,7 @@ export default function useWeather() {
     latitude: number,
     longitude: number
   ): Promise<string> {
-    const apiKey = "AIzaSyAEQMxozLdtGTawHLtQecMaUvb-sMXVWBI";
+    const apiKey = "";
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
 
     try {
