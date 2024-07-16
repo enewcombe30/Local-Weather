@@ -2,17 +2,17 @@ import { useState, useEffect } from "react";
 import { getCurrentWeather } from "../apiCalls/getWeatherData";
 import { Weather } from "../types/types";
 import { defaultWeather } from "../constants/weather";
-import { GoogApiKey } from "../GoogleApi";
 
 export default function useWeather() {
   const [currentWeather, setCurrentWeather] = useState<Weather>(defaultWeather);
   const [currentLocation, setCurrentLocation] = useState<string>("");
+  const GoogleApiKey = process.env.REACT_APP_API_KEY;
 
   async function getCityName(
     latitude: number,
     longitude: number
   ): Promise<string> {
-    const apiKey = `${GoogApiKey}`;
+    const apiKey = `${GoogleApiKey}`;
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
 
     try {
@@ -62,8 +62,6 @@ export default function useWeather() {
   }
 
   getUserLocationAndCity();
-
-  console.log(currentLocation);
 
   useEffect(() => {
     currentLocation !== "" &&
