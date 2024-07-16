@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getCurrentWeather } from "../apiCalls/getWeatherData";
 import { Weather } from "../types/types";
 import { defaultWeather } from "../constants/weather";
+import { GoogApiKey } from "../GoogleApi";
 
 export default function useWeather() {
   const [currentWeather, setCurrentWeather] = useState<Weather>(defaultWeather);
@@ -11,7 +12,7 @@ export default function useWeather() {
     latitude: number,
     longitude: number
   ): Promise<string> {
-    const apiKey = "";
+    const apiKey = `${GoogApiKey}`;
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
 
     try {
