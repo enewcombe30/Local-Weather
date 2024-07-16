@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# api keys
+/src/GoogleApi.ts
+
 # testing
 /coverage
 
