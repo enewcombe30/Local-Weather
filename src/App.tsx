@@ -2,8 +2,6 @@ import useWeather from "./hooks/useWeather";
 
 function App() {
   const { currentWeather } = useWeather();
-  console.log(currentWeather);
-  console.log("current", currentWeather.current);
   return (
     <div className="w-screen h-screen bg-slate-200">
       <div className="w-fit mx-auto pb-[6rem] pt-[4rem] text-4xl">
