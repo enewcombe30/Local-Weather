@@ -1,3 +1,8 @@
+export type Forecast = {
+  weather: Weather;
+  day: number;
+};
+
 export type Weather = {
   location: UserLocation;
   current: CurrentWeather;
