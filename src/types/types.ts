@@ -5,7 +5,10 @@ export type Forecast = {
 
 export type Weather = {
   location: UserLocation;
-  current: CurrentWeather;
+  forecast: ForecastDays;
+};
+export type ForecastDays = {
+  forecastDays: DailyWeather[];
 };
 
 export type UserLocation = {
@@ -15,7 +18,7 @@ export type UserLocation = {
   localtime: string;
 };
 
-export type CurrentWeather = {
+export type DailyWeather = {
   temp_c: number;
   condition: Condition;
   wind_mph: number;

@@ -69,5 +69,5 @@ export default function useWeather() {
       );
   }, [currentLocation]);
 
-  return { currentWeather };
+  return { currentWeather, currentLocation };
 }
