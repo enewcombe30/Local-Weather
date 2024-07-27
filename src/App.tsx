@@ -1,24 +1,16 @@
+import { useEffect, useState } from "react";
 import useWeather from "./hooks/useWeather";
-import DayBlock from "./components/DayBlock";
+import { Day } from "./types/types";
 
 function App() {
-  const { currentWeather } = useWeather();
+  const { forecast } = useWeather();
   const date = new Date();
   const hours = date.getHours();
   // Use getHours to get current weather from forecast hours instead of current weather
-  console.log("weather", currentWeather.forecast.forecastDays);
 
-  function renderDays() {
-    const days = currentWeather.forecast.forecastDays.map((day, index) => {
-      console.log(`Day ${index + 1}`, day);
-      return (
-        <>
-          <DayBlock shownDay={day} />
-        </>
-      );
-    });
-    return days;
-  }
+  // create renderdays function
+
+  console.log("forecast in app", forecast);
 
   return (
     <div className="w-screen h-screen bg-slate-200">
@@ -26,14 +18,14 @@ function App() {
         Local Weather App
       </div>
       <div>
-        {/* <div className="w-fit mx-auto">
-          <div className="w-fit text-4xl pt-2 pb-0.5">{`${currentWeather.location.name}`}</div>
-          <div className="w-fit mx-auto text-slate-400">{`${currentWeather.location.region}`}</div>
+        <div>{}</div>
+        <div className="w-fit mx-auto">
+          <div className="w-fit text-4xl pt-2 pb-0.5">{`${forecast?.forecastday[0].date}`}</div>
+          <div className="w-fit mx-auto text-slate-400">{`${forecast?.forecastday[0].hour[0].temp_c}`}</div>
         </div>
         <div className="w-fit mx-auto">
-          <div className="w-fit text-slate-400">{`${currentWeather.location.country}`}</div>
-        </div> */}
-        <>{renderDays()}</>
+          <div className="w-fit text-slate-400">{`${forecast?.forecastday[0].hour[1].time}`}</div>
+        </div>
       </div>
     </div>
   );

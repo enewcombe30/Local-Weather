@@ -1,4 +1,4 @@
-import { DailyWeather, UserLocation } from "../types/types";
+import { DailyWeather } from "../types/types";
 
 interface props {
   shownDay: DailyWeather;
@@ -45,10 +45,6 @@ export default function DayBlock({ shownDay }: props) {
                 <div className="w-[6rem]">Wind Speed</div>
                 <div className="w-[18rem]">{`: ${shownDay.wind_mph} mph`}</div>
               </div>
-            </div>
-            <div className="w-fit flex text-xs">
-              <div className="w-[6rem]">Last Updated</div>
-              <div className="w-[18rem]">{`: ${shownDay.last_updated}`}</div>
             </div>
           </div>
         </div>

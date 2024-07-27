@@ -8,15 +8,20 @@ export const defaultWeather: Weather = {
     localtime: "",
   },
   forecast: {
-    forecastDays: [
+    forecastday: [
       {
-        temp_c: 0,
-        condition: { text: "", icon: "" },
-        wind_mph: 0,
-        wind_dir: "",
-        feelslike_c: 0,
-        gust_mph: 0,
-        last_updated: "",
+        date: "",
+        hour: [
+          {
+            temp_c: 0,
+            condition: { text: "", icon: "" },
+            wind_mph: 0,
+            wind_dir: "",
+            feelslike_c: 0,
+            gust_mph: 0,
+            time: "13",
+          },
+        ],
       },
     ],
   },

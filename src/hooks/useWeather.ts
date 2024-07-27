@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { getCurrentWeather } from "../apiCalls/getWeatherData";
-import { Weather } from "../types/types";
+import { Weather, Day, ForecastDay } from "../types/types";
 import { defaultWeather } from "../constants/weather";
 
 export default function useWeather() {
   const [currentWeather, setCurrentWeather] = useState<Weather>(defaultWeather);
+  const [forecast, setForecast] = useState<ForecastDay>();
   const [currentLocation, setCurrentLocation] = useState<string>("");
   const GoogleApiKey = process.env.REACT_APP_API_KEY;
 
@@ -69,5 +70,12 @@ export default function useWeather() {
       );
   }, [currentLocation]);
 
-  return { currentWeather, currentLocation };
+  useEffect(() => {
+    currentWeather &&
+      currentWeather.forecast &&
+      setForecast(currentWeather.forecast);
+    console.log(forecast, "forecast useWeather");
+  }, [currentWeather]);
+
+  return { currentWeather, currentLocation, forecast };
 }
