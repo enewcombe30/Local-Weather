@@ -31,7 +31,6 @@ export type DailyWeather = {
   wind_dir: string;
   feelslike_c: number;
   gust_mph: number;
-
   time: string;
 };
 
