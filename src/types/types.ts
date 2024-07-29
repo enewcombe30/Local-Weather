@@ -28,9 +28,10 @@ export type DailyWeather = {
   temp_c: number;
   condition: Condition;
   wind_mph: number;
-  wind_dir: string;
+  chance_of_rain: number;
+  humidity: number;
+  uv: number;
   feelslike_c: number;
-  gust_mph: number;
   time: string;
 };
 

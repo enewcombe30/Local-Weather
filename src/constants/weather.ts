@@ -14,11 +14,12 @@ export const defaultWeather: Weather = {
         hour: [
           {
             temp_c: 0,
+            humidity: 1,
+            chance_of_rain: 0,
+            uv: 0,
             condition: { text: "", icon: "" },
             wind_mph: 0,
-            wind_dir: "",
             feelslike_c: 0,
-            gust_mph: 0,
             time: "13",
           },
         ],

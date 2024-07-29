@@ -37,12 +37,20 @@ export default function DayBlock({ shownDay }: props) {
                 </div>
               </div>
               <div className="w-12rem] flex">
-                <div className="w-[6rem]">Wind Dir </div>
-                <div className="w-[6rem]">{`: ${shownDay.wind_dir}`}</div>
+                <div className="w-[6rem]">Precipitation </div>
+                <div className="w-[6rem]">{`: ${shownDay.chance_of_rain}`}</div>
               </div>
               <div className="w-[12rem] flex">
                 <div className="w-[6rem]">Wind Speed</div>
                 <div className="w-[6rem]">{`: ${shownDay.wind_mph} mph`}</div>
+              </div>
+              <div className="w-[12rem] flex">
+                <div className="w-[6rem]">Humidity</div>
+                <div className="w-[6rem]">{`: ${shownDay.humidity}%`}</div>
+              </div>
+              <div className="w-[12rem] flex">
+                <div className="w-[6rem]">UV</div>
+                <div className="w-[6rem]">{`: ${shownDay.uv}`}</div>
               </div>
             </div>
           </div>

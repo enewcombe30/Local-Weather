@@ -30,10 +30,14 @@ function App() {
       // Example usage
       return (
         <div className="mx-auto w-fit h-fit flex" key={dayIndex}>
-          <div className="w-fit mx-auto">
-            <div className="w-fit mx-auto">{formatDate(day.date)}</div>
-            <div className="w-[12rem] overflow-x-auto overflow-hidden no-scrollbar">
-              <div className="flex w-fit">{hourly}</div>
+          <div className="w-fit mx-auto border-2 border-slate-300 padding-4 rounded-2xl">
+            <div className="p-4">
+              <div className="w-fit mx-auto border-b border-slate-300 pb-1.5">
+                {formatDate(day.date)}
+              </div>
+              <div className="w-[12rem] overflow-x-auto overflow-hidden no-scrollbar">
+                <div className="flex w-fit">{hourly}</div>
+              </div>
             </div>
           </div>
         </div>
