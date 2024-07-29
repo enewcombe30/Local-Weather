@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getCurrentWeather } from "../apiCalls/getWeatherData";
-import { Weather, Day, ForecastDay } from "../types/types";
+import { Weather, ForecastDay } from "../types/types";
 import { defaultWeather } from "../constants/weather";
 
 export default function useWeather() {
@@ -74,7 +74,6 @@ export default function useWeather() {
     currentWeather &&
       currentWeather.forecast &&
       setForecast(currentWeather.forecast);
-    console.log(forecast, "forecast useWeather");
   }, [currentWeather]);
 
   return { currentWeather, currentLocation, forecast };
