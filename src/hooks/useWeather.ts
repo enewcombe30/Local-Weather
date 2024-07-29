@@ -5,7 +5,9 @@ import { defaultWeather } from "../constants/weather";
 
 export default function useWeather() {
   const [currentWeather, setCurrentWeather] = useState<Weather>(defaultWeather);
-  const [forecast, setForecast] = useState<ForecastDay>();
+  const [forecast, setForecast] = useState<ForecastDay>(
+    defaultWeather.forecast
+  );
   const [currentLocation, setCurrentLocation] = useState<string>("");
   const GoogleApiKey = process.env.REACT_APP_API_KEY;
 

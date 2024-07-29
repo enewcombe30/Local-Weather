@@ -22,6 +22,7 @@ export type UserLocation = {
 export type Day = {
   date: string;
   hour: DailyWeather[];
+  day: DailyAverage;
 };
 
 export type DailyWeather = {
@@ -38,4 +39,12 @@ export type DailyWeather = {
 export type Condition = {
   text: string;
   icon: string;
+};
+
+export type DailyAverage = {
+  maxtemp_c: number;
+  mintemp_c: number;
+  chance_of_rain: number;
+  avghumidity: number;
+  condition: Condition;
 };

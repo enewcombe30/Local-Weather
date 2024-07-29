@@ -2,22 +2,33 @@ import React from "react";
 import useWeather from "./hooks/useWeather";
 import useDate from "./hooks/useDate";
 import DayBlock from "./components/DayBlock";
+import { DailyWeather } from "./types/types";
 
 function App() {
   const { forecast } = useWeather();
   const { formatDate } = useDate();
 
-  // Use getHours to get current weather from forecast hours instead of current weather
   function renderForecast() {
-    const hasForecast = forecast && forecast.forecastday.length > 1;
+    const hasForecast = forecast && forecast.forecastday.length > 0;
     if (!hasForecast || !Array.isArray(forecast.forecastday)) {
       console.error("Forecast is not available or is not an array");
-      return null; // or return some fallback UI
+      return null;
     }
 
+    const remainingHours = (forecastHours: DailyWeather[]) => {
+      const now = new Date();
+
+      return forecastHours.filter((hourly) => {
+        const hourTime = new Date(hourly.time.replace(" ", "T"));
+        return hourTime > now;
+      });
+    };
+
     const days = forecast.forecastday.map((day, dayIndex) => {
-      const hourly = day.hour.map((hour, hourIndex) => {
-        // console.log(hour, "hour");
+      const hourlyForecast =
+        dayIndex === 0 ? remainingHours(day.hour) : day.hour;
+      console.log(hourlyForecast);
+      const hourly = hourlyForecast.map((hour, hourIndex) => {
         return (
           <React.Fragment key={hourIndex}>
             <div className="inline w-fit mx-auto">
@@ -27,7 +38,6 @@ function App() {
         );
       });
 
-      // Example usage
       return (
         <div className="mx-auto w-fit h-fit flex" key={dayIndex}>
           <div className="w-fit mx-auto border-2 border-slate-300 padding-4 rounded-2xl">
