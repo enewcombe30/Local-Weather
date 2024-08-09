@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { getCurrentWeather } from "../apiCalls/getWeatherData";
+import { getWeatherForecast } from "../apiCalls/getWeatherData";
 import { Weather, ForecastDay } from "../types/types";
 import { defaultWeather } from "../constants/weather";
 
 export default function useWeather() {
-  const [currentWeather, setCurrentWeather] = useState<Weather>(defaultWeather);
+  // Remove or replace Current Weather
+  const [weatherForecast, setWeatherForecast] =
+    useState<Weather>(defaultWeather);
   const [forecast, setForecast] = useState<ForecastDay>(
     defaultWeather.forecast
   );
@@ -67,16 +69,16 @@ export default function useWeather() {
 
   useEffect(() => {
     currentLocation !== "" &&
-      getCurrentWeather(currentLocation).then((data) =>
-        setCurrentWeather(data)
+      getWeatherForecast(currentLocation).then((data) =>
+        setWeatherForecast(data)
       );
   }, [currentLocation]);
 
   useEffect(() => {
-    currentWeather &&
-      currentWeather.forecast &&
-      setForecast(currentWeather.forecast);
-  }, [currentWeather]);
+    weatherForecast &&
+      weatherForecast.forecast &&
+      setForecast(weatherForecast.forecast);
+  }, [weatherForecast]);
 
-  return { currentWeather, currentLocation, forecast };
+  return { currentLocation, forecast };
 }
