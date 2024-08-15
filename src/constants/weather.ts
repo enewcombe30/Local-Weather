@@ -26,7 +26,7 @@ export const defaultWeather: Weather = {
         day: {
           maxtemp_c: 0,
           mintemp_c: 0,
-          chance_of_rain: 0,
+          daily_chance_of_rain: 0,
           avghumidity: 0,
           condition: { text: "", icon: "" },
         },

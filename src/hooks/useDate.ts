@@ -11,20 +11,19 @@ export default function useDate() {
       dayDate.getMonth() === today.getMonth() &&
       dayDate.getFullYear() === today.getFullYear();
 
-    const isTomorrow =
-      dayDate.getDate() === tomorrow.getDate() &&
-      dayDate.getMonth() === tomorrow.getMonth() &&
-      dayDate.getFullYear() === tomorrow.getFullYear();
+    // const isTomorrow =
+    //   dayDate.getDate() === tomorrow.getDate() &&
+    //   dayDate.getMonth() === tomorrow.getMonth() &&
+    //   dayDate.getFullYear() === tomorrow.getFullYear();
 
     if (isToday) {
       return "Today";
     }
-    if (isTomorrow) {
-      return "Tomorrow";
-    }
+    // if (isTomorrow) {
+    //   return "Tomorrow";
+    // }
     return dayDate.toLocaleDateString("en-US", {
       weekday: "short",
-      year: "numeric",
       month: "long",
       day: "numeric",
     });

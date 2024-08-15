@@ -44,7 +44,7 @@ export type Condition = {
 export type DailyAverage = {
   maxtemp_c: number;
   mintemp_c: number;
-  chance_of_rain: number;
+  daily_chance_of_rain: number;
   avghumidity: number;
   condition: Condition;
 };
