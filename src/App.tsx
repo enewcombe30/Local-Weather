@@ -15,7 +15,7 @@ function App() {
       return null;
     }
 
-    // move to hour;y dropdown
+    // move to hourly dropdown
     const remainingHours = (forecastHours: DailyWeather[]) => {
       const now = new Date();
 
@@ -39,9 +39,9 @@ function App() {
           </React.Fragment>
         );
       });
-      // fomratted block
+      // formatted block
       return (
-        <div className="mx-auto w-fit h-fit flex" key={dayIndex}>
+        <div key={dayIndex}>
           <div className="w-fit mx-auto border-2 border-slate-300 padding-4 rounded-2xl">
             <div className="p-4">
               <div className="w-fit mx-auto border-b border-slate-300 pb-1.5">
@@ -79,7 +79,6 @@ function App() {
                     <span className="w-[4rem]">{day.day.avghumidity}%</span>
                   </div>
                 </div>
-                <div className="flex w-fit">{hourly}</div>
               </div>
             </div>
           </div>
@@ -91,11 +90,16 @@ function App() {
   }
 
   return (
-    <div className="w-screen h-screen bg-slate-200">
-      <div className="w-fit mx-auto pb-[6rem] pt-[4rem] text-4xl">
-        Local Weather App
+    <div className="w-screen h-screen bg-slate-200 px-[3rem]">
+      <div className="mx-auto">
+        <div className="w-fit mx-auto pb-[6rem] pt-[4rem] text-4xl">
+          Local Weather App
+        </div>
+        <div className="flex mx-auto my-4 space-x-[2.5rem]">
+          {renderForecast()}
+        </div>
+        <div className="my-[4rem] w-full h-[8rem] border-2 border-slate-300 padding-4 rounded-2xl"></div>
       </div>
-      <div className="flex">{renderForecast()}</div>
     </div>
   );
 }
