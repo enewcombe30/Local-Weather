@@ -1,12 +1,32 @@
 import React from "react";
+import { useState } from "react";
 import useWeather from "./hooks/useWeather";
 import useDate from "./hooks/useDate";
+import useHourlyForecast from "./hooks/useHourlyForecast";
 import DayBlock from "./components/DayBlock";
 import { DailyWeather } from "./types/types";
+import { defaultWeather } from "./constants/weather";
 
 function App() {
   const { forecast } = useWeather();
   const { formatDate } = useDate();
+  const { remainingHours } = useHourlyForecast();
+
+  const [dayByHour, setDayByHour] = useState<DailyWeather[]>(
+    defaultWeather.forecast.forecastday[0].hour
+  );
+  console.log("day", dayByHour);
+
+  // this function not returning first days data. check remaining day function
+  function setForecast(selectedDay: number) {
+    console.log(selectedDay);
+    if (forecast && selectedDay === 0) {
+      return setDayByHour(
+        remainingHours(forecast.forecastday[selectedDay].hour)
+      );
+    }
+    return setDayByHour(forecast.forecastday[selectedDay].hour);
+  }
 
   function renderForecast() {
     const hasForecast = forecast && forecast.forecastday.length > 0;
@@ -15,36 +35,28 @@ function App() {
       return null;
     }
 
-    // move to hourly dropdown
-    const remainingHours = (forecastHours: DailyWeather[]) => {
-      const now = new Date();
-
-      return forecastHours.filter((hourly) => {
-        const hourTime = new Date(hourly.time.replace(" ", "T"));
-        return hourTime > now;
-      });
-    };
-
     const days = forecast.forecastday.map((day, dayIndex) => {
       // get daily averages here
-      const hourlyForecast =
-        dayIndex === 0 ? remainingHours(day.hour) : day.hour;
-      // move to hourly dropdown
-      const hourly = hourlyForecast.map((hour, hourIndex) => {
-        return (
-          <React.Fragment key={hourIndex}>
-            <div className="inline w-fit mx-auto">
-              <DayBlock shownDay={hour} />
-            </div>
-          </React.Fragment>
-        );
-      });
+      // const hourlyForecast =
+      //   dayIndex === 0 ? remainingHours(day.hour) : day.hour;
+      // const hourly = hourlyForecast.map((hour, hourIndex) => {
+      //   return (
+      //     <React.Fragment key={hourIndex}>
+      //       <div className="inline w-fit mx-auto">
+      //         <DayBlock shownDay={hour} />
+      //       </div>
+      //     </React.Fragment>
+      //   );
+      // });
       // formatted block
       return (
         <div key={dayIndex}>
-          <div className="w-fit mx-auto border-2 border-slate-300 padding-4 rounded-2xl">
+          <div
+            className="w-fit mx-auto border-2 border-slate-300 padding-4 rounded-2xl"
+            onClick={() => dayIndex && setForecast(dayIndex)}
+          >
             <div className="p-4">
-              <div className="w-fit mx-auto border-b border-slate-300 pb-1.5">
+              <div className="w-fit mx-auto border-b border-slate-300 pb-1.5 mb-4">
                 {formatDate(day.date)}
               </div>
               <div className="w-[24rem] h-fit flex">
@@ -55,7 +67,7 @@ function App() {
                   ></img>
                 </div>
                 <div className="ml-8 w-[16rem]">
-                  <div>{day.day.condition.text}</div>
+                  <div className="text-lg mb-2">{day.day.condition.text}</div>
                   <div className="w-[12rem] flex">
                     <div className="w-[8rem]">Chance of Rain: </div>
                     <div className="w-[4rem]">
@@ -85,13 +97,12 @@ function App() {
         </div>
       );
     });
-
     return days;
   }
 
   return (
     <div className="w-screen h-screen bg-slate-200 px-[3rem]">
-      <div className="mx-auto">
+      <div className="mx-auto w-fit">
         <div className="w-fit mx-auto pb-[6rem] pt-[4rem] text-4xl">
           Local Weather App
         </div>
