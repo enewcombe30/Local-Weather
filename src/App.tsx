@@ -15,15 +15,13 @@ function App() {
   const [dayByHour, setDayByHour] = useState<DailyWeather[]>(
     defaultWeather.forecast.forecastday[0].hour
   );
-  console.log("day", dayByHour);
 
-  // this function not returning first days data. check remaining day function
   function setForecast(selectedDay: number) {
+    // add open hourly modal to this function or create new function to set forecast and display hourly modal
     console.log(selectedDay);
     if (forecast && selectedDay === 0) {
-      return setDayByHour(
-        remainingHours(forecast.forecastday[selectedDay].hour)
-      );
+      const todayForecast = remainingHours(forecast.forecastday[0].hour);
+      return setDayByHour(todayForecast);
     }
     return setDayByHour(forecast.forecastday[selectedDay].hour);
   }
@@ -36,24 +34,12 @@ function App() {
     }
 
     const days = forecast.forecastday.map((day, dayIndex) => {
-      // get daily averages here
-      // const hourlyForecast =
-      //   dayIndex === 0 ? remainingHours(day.hour) : day.hour;
-      // const hourly = hourlyForecast.map((hour, hourIndex) => {
-      //   return (
-      //     <React.Fragment key={hourIndex}>
-      //       <div className="inline w-fit mx-auto">
-      //         <DayBlock shownDay={hour} />
-      //       </div>
-      //     </React.Fragment>
-      //   );
-      // });
-      // formatted block
+      // Change DayBlock to the below code
       return (
         <div key={dayIndex}>
           <div
             className="w-fit mx-auto border-2 border-slate-300 padding-4 rounded-2xl"
-            onClick={() => dayIndex && setForecast(dayIndex)}
+            onClick={() => setForecast(dayIndex)}
           >
             <div className="p-4">
               <div className="w-fit mx-auto border-b border-slate-300 pb-1.5 mb-4">
