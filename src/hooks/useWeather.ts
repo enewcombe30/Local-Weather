@@ -4,7 +4,6 @@ import { Weather, ForecastDay } from "../types/types";
 import { defaultWeather } from "../constants/weather";
 
 export default function useWeather() {
-  // Remove or replace Current Weather
   const [weatherForecast, setWeatherForecast] =
     useState<Weather>(defaultWeather);
   const [forecast, setForecast] = useState<ForecastDay>(

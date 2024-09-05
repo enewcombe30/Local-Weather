@@ -1,6 +1,7 @@
 import DayBlock from "./components/DayBlock";
 import DayDetail from "./components/DayDetail";
 import useForecast from "./hooks/useForecast";
+import useWeather from "./hooks/useWeather";
 
 function App() {
   const {
@@ -10,6 +11,7 @@ function App() {
     forecast,
     daySelected,
   } = useForecast();
+  const { currentLocation } = useWeather();
 
   function renderForecast() {
     const hasForecast = forecast && forecast.forecastday.length > 0;
@@ -44,7 +46,10 @@ function App() {
       <div className="mx-auto w-[95%]">
         <div className="mx-auto ">
           <div className="w-fit mx-auto pb-[6rem] pt-[4rem] text-4xl">
-            Local Weather App
+            <div className="mb-4">My Weather App</div>
+            <div className="text-2xl text-slate-400 mx-auto w-fit">
+              {currentLocation}
+            </div>
           </div>
           <div className="mx-auto flex space-between w-full">
             {renderForecast()}
