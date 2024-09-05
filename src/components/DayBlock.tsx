@@ -1,61 +1,65 @@
-import { DailyWeather } from "../types/types";
+import { DailyAverage } from "../types/types";
 import useDate from "../hooks/useDate";
 
 interface props {
-  shownDay: DailyWeather;
+  shownDay: DailyAverage;
+  dayIndex: number;
+  handleShowDetail: (day: number) => void;
+  dayDate: string;
 }
 
-export default function DayBlock({ shownDay }: props) {
-  // add formatter to return hour instead of date
-  const { formatDateTime } = useDate();
-  const formattedHour = formatDateTime(shownDay.time);
+export default function DayBlock({
+  shownDay,
+  dayIndex,
+  handleShowDetail,
+  dayDate,
+}: props) {
+  const { formatDate } = useDate();
   return (
-    <div>
-      {shownDay && (
-        <div className="w-fit mx-auto my-[2rem]">
-          <div className="w-fit flex mx-auto text-xs text-slate-400"></div>
-          <div className="w-fit mx-auto flex text-xl">{`${formattedHour}`}</div>
-          <img
-            className="w-[5rem] h-[5rem] bg-blue-300 rounded-full mx-auto my-2"
-            src={`${shownDay.condition.icon}`}
-          ></img>
-          <div className="w-[12rem] mx-auto">
-            <div className="w-fit mx-auto text-xl mb-[1rem]">
-              {`${shownDay.condition.text}`}
+    <div key={dayIndex} className="w-[100%] mx-4">
+      <div
+        className="mx-auto border-2 border-slate-300 padding-4 rounded-2xl cursor-pointer"
+        onClick={() => handleShowDetail(dayIndex)}
+      >
+        <div className="p-4">
+          <div className="w-fit mx-auto border-b border-slate-300 pb-1.5 mb-4">
+            {formatDate(dayDate)}
+          </div>
+          <div className="flex w-[100%]">
+            <div className="w-[40%] mx-auto">
+              <img
+                className="w-[80%] h-[80%] max-w-[8rem] max-h-[8rem] rounded-3xl bg-blue-300 mr-8"
+                src={`${shownDay.condition.icon}`}
+              ></img>
             </div>
-            <div className="mx-auto w-[12rem]">
-              <div className="w-[12rem] flex">
-                <div className="w-[6rem]">Temp C</div>
-                <div className="w-[6rem]">
-                  {`: ${shownDay.temp_c} `}&deg;{"C"}
-                </div>
+            <div className="mx-4 w-[60%]">
+              <div className="text-lg mb-2 w-full">
+                {shownDay.condition.text}
               </div>
-              <div className="w-[12rem] flex">
-                <div className="w-[6rem]">Feels Like</div>
-                <div className="w-[6rem]">
-                  {`: ${shownDay.feelslike_c} `}&deg;{"C"}
-                </div>
+              <div className="flex">
+                <div className="w-[80%]">Chance of Rain: </div>
+                <div className="w-[20%]">{shownDay.daily_chance_of_rain}%</div>
               </div>
-              <div className="w-12rem] flex">
-                <div className="w-[6rem]">Precipitation </div>
-                <div className="w-[6rem]">{`: ${shownDay.chance_of_rain}`}</div>
+              <div className="flex">
+                <div className="w-[80%]">Max Temp:</div>
+                <span className="w-[20%]">
+                  {shownDay.maxtemp_c}&deg;{"C"}
+                </span>
               </div>
-              <div className="w-[12rem] flex">
-                <div className="w-[6rem]">Wind Speed</div>
-                <div className="w-[6rem]">{`: ${shownDay.wind_mph} mph`}</div>
+              <div className="flex">
+                <div className="w-[80%]">Min Temp:</div>
+                <span className="w-[20%]">
+                  {shownDay.mintemp_c}&deg;{"C"}
+                </span>
               </div>
-              <div className="w-[12rem] flex">
-                <div className="w-[6rem]">Humidity</div>
-                <div className="w-[6rem]">{`: ${shownDay.humidity}%`}</div>
-              </div>
-              <div className="w-[12rem] flex">
-                <div className="w-[6rem]">UV</div>
-                <div className="w-[6rem]">{`: ${shownDay.uv}`}</div>
+              <div className="flex">
+                <div className="w-[80%]">Humidity:</div>
+                <span className="w-[20%]">{shownDay.avghumidity}%</span>
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
