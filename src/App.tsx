@@ -3,8 +3,13 @@ import DayDetail from "./components/DayDetail";
 import useForecast from "./hooks/useForecast";
 
 function App() {
-  const { showHourlyForecast, handleShowHourly, dayByHour, forecast } =
-    useForecast();
+  const {
+    showHourlyForecast,
+    handleShowHourly,
+    dayByHour,
+    forecast,
+    daySelected,
+  } = useForecast();
 
   function renderForecast() {
     const hasForecast = forecast && forecast.forecastday.length > 0;
@@ -12,12 +17,14 @@ function App() {
     const days =
       hasForecast &&
       forecast.forecastday.map((day, dayIndex) => {
+        const dayDetailSelected = daySelected === dayIndex;
         return (
           <DayBlock
             shownDay={day.day}
             dayIndex={dayIndex}
             handleShowDetail={handleShowHourly}
             dayDate={day.date}
+            isSelected={dayDetailSelected}
           />
         );
       });
@@ -43,7 +50,7 @@ function App() {
             {renderForecast()}
           </div>
           {showHourlyForecast && (
-            <div className="mx-auto my-[4rem] h-[10rem] w-full border-2 border-slate-300 padding-4 rounded-2xl flex overflow-scroll">
+            <div className="mx-auto my-[4rem] h-[10rem] w-fit max-w-full border-2 border-slate-300 rounded-2xl flex overflow-scroll no-scrollbar">
               {renderForecastDetail()}
             </div>
           )}

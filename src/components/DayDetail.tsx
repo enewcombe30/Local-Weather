@@ -10,7 +10,7 @@ interface Props {
 export default function DayDetail({ hourIndex, hour, isFirst }: Props) {
   const { formatDateTime } = useDate();
   return (
-    <div key={hourIndex} className="">
+    <div key={hourIndex} className="my-auto">
       <div
         className={`min-w-[5rem] w-full my-2 text-slate-600 text-sm px-4 mx-auto ${
           !isFirst && "border-l border-slate-500"

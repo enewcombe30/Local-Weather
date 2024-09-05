@@ -12,8 +12,10 @@ export default function useForecast() {
     defaultWeather.forecast.forecastday[0].hour
   );
   const [showHourlyForecast, setShowHourlyForecast] = useState<boolean>(false);
+  const [daySelected, setDaySelected] = useState<number>();
 
   function setForecast(selectedDay: number) {
+    setDaySelected(selectedDay);
     if (forecast && selectedDay === 0) {
       const todayForecast = remainingHours(forecast.forecastday[0].hour);
       return setDayByHour(todayForecast);
@@ -22,6 +24,11 @@ export default function useForecast() {
   }
 
   function handleShowHourly(selectedDay: number) {
+    if (selectedDay === daySelected) {
+      setShowHourlyForecast(false);
+      setDaySelected(3);
+      return;
+    }
     setForecast(selectedDay);
     setShowHourlyForecast(true);
   }
@@ -32,5 +39,6 @@ export default function useForecast() {
     dayByHour,
     setForecast,
     forecast,
+    daySelected,
   };
 }

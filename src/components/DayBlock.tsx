@@ -6,6 +6,7 @@ interface props {
   dayIndex: number;
   handleShowDetail: (day: number) => void;
   dayDate: string;
+  isSelected: boolean;
 }
 
 export default function DayBlock({
@@ -13,12 +14,15 @@ export default function DayBlock({
   dayIndex,
   handleShowDetail,
   dayDate,
+  isSelected,
 }: props) {
   const { formatDate } = useDate();
   return (
     <div key={dayIndex} className="w-[100%] mx-4">
       <div
-        className="mx-auto border-2 border-slate-300 padding-4 rounded-2xl cursor-pointer"
+        className={`mx-auto border-2  ${
+          isSelected ? "border-blue-300" : "border-slate-300"
+        } padding-4 rounded-2xl cursor-pointer`}
         onClick={() => handleShowDetail(dayIndex)}
       >
         <div className="p-4">
