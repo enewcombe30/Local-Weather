@@ -46,7 +46,7 @@ function App() {
       <div className="mx-auto w-[95%]">
         <div className="mx-auto ">
           <div className="w-fit mx-auto pb-[6rem] pt-[4rem] text-4xl">
-            <div className="mb-4">My Weather App.</div>
+            <div className="mb-4">Local Weather App.</div>
             <div className="text-2xl text-slate-400 mx-auto w-fit">
               {capFirst(currentLocation)}
             </div>
