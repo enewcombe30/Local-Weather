@@ -2,6 +2,7 @@ import DayBlock from "./components/DayBlock";
 import DayDetail from "./components/DayDetail";
 import useForecast from "./hooks/useForecast";
 import useWeather from "./hooks/useWeather";
+import { capFirst } from "./helpers/capFirst";
 
 function App() {
   const {
@@ -15,7 +16,6 @@ function App() {
 
   function renderForecast() {
     const hasForecast = forecast && forecast.forecastday.length > 0;
-
     const days =
       hasForecast &&
       forecast.forecastday.map((day, dayIndex) => {
@@ -48,7 +48,7 @@ function App() {
           <div className="w-fit mx-auto pb-[6rem] pt-[4rem] text-4xl">
             <div className="mb-4">My Weather App.</div>
             <div className="text-2xl text-slate-400 mx-auto w-fit">
-              {currentLocation}
+              {capFirst(currentLocation)}
             </div>
           </div>
           <div className="mx-auto flex space-between w-full">

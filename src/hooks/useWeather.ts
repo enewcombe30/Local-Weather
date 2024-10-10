@@ -28,7 +28,6 @@ export default function useWeather() {
           const formattedCityName =
             location.results.length >= 1 ? cityName.toLowerCase() : "london";
 
-          // const cityName = await getCityName(latitude, longitude);
           setCurrentLocation(formattedCityName);
         },
         (error: GeolocationPositionError) => {
