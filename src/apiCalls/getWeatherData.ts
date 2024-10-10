@@ -4,6 +4,7 @@ async function getUserLocation(latitude: number, longitude: number) {
   const response = await fetch(
     `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OpenGateApiKey}`
   );
+  console.log(OpenGateApiKey);
   const data = await response.json();
   return data;
 }
