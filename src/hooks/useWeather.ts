@@ -25,9 +25,8 @@ export default function useWeather() {
           const location = await getUserLocation(latitude, longitude);
           const cityName = location.results[0].components.city;
 
-          const formattedCityName = cityName
-            ? cityName.toLowerCase()
-            : "london";
+          const formattedCityName =
+            location.results.length >= 1 ? cityName.toLowerCase() : "london";
 
           // const cityName = await getCityName(latitude, longitude);
           setCurrentLocation(formattedCityName);
