@@ -16,7 +16,11 @@ export default function DayDetail({ hourIndex, hour, isFirst }: Props) {
           !isFirst && "border-l border-slate-500"
         }`}
       >
-        <img className="mx-auto w-fit" src={hour.condition.icon}></img>
+        <img
+          className="mx-auto w-fit"
+          src={hour.condition.icon}
+          alt="condition icon"
+        ></img>
         <div className="mx-auto w-fit">
           {hour.temp_c}&deg;{"C"}
         </div>

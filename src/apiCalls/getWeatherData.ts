@@ -1,6 +1,8 @@
+const OpenGateApiKey = process.env.REACT_APP_API_KEY;
+
 async function getUserLocation(latitude: number, longitude: number) {
   const response = await fetch(
-    `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=eea0868c252a4f519d4fa003b10c7b7d`
+    `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OpenGateApiKey}`
   );
   const data = await response.json();
   return data;

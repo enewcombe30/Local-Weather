@@ -34,6 +34,7 @@ export default function DayBlock({
               <img
                 className="w-[80%] h-[80%] max-w-[8rem] max-h-[8rem] rounded-3xl bg-blue-300 mr-8"
                 src={`${shownDay.condition.icon}`}
+                alt="condition icon"
               ></img>
             </div>
             <div className="mx-4 w-[60%]">
